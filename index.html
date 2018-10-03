@@ -1,0 +1,32 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body style="background-color: red">
+    
+</body>
+<script type="text/javascript" src="./index.js"></script>
+<script type="text/javascript">
+// x = new Proxy({name: 'Hello'}, () => {
+// set: (obj, prop) => {
+// console.log(obj, prop, 'print!');
+// obj.x.name = 'asdafgfhgfgdfs'
+// return prop;
+// }
+// })
+
+let validator = {
+  set: function(obj, prop, value) {
+    window.obj.x.name = '';
+    return value;
+  }
+};
+
+let x = new Proxy({name: 'Damo'}, validator);
+createCustomComponent('damo-el', () => `<div><input type='text' value=${x.name}></div>`, x)
+window.obj = {x: document.body.appendChild(document.createElement('damo-el'))}
+</script>
+</html>
